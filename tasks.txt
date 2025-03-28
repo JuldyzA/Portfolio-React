@@ -1,0 +1,31 @@
+
+
+<link Projects page to projects posts>
+<Add Short description to it>
+Add button to individual Projects
+Animate that button
+
+Also animate button on swiper in project section in Home Page
+
+
+<Change photoes in local and migrate it to live>
+
+Teck Stack
+Add teck stack"s svg files to About me page
+For each teck stack field use side header rotated text (Web Dev | Web Deseign | Testing)
+And add animation:
+    card transition or stack
+
+
+
+About Me
+Add photoes of the favourite places or images
+Or animated girl's doing some activity like: sewing/coding/hiking
+
+Contact Form add robot animation at the end
+
+Find scroll bar to Home page
+
+Social media icons on Home Page / style them as in the mock up
+
+Animate Name in the Home Page by rotating text hover animation

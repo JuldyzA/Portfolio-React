@@ -1,0 +1,167 @@
+/* Base styles (Mobile First) */
+.toolkits-section {margin-top: 1rem;};
+.toolkits {
+    
+    position: relative;
+    overflow: visible;
+    padding:clamp(0.5rem, 5vw + 0.6rem, 1rem);
+    scroll-margin-top: clamp(40px, 10vw, 50px);
+    background-image: url('/porfolio-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Card Container */
+.toolkits-card {
+    width: 98%;
+    position: relative;
+    background: rgba(209, 209, 249, 0.141);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    z-index: 2;
+    box-shadow: 0 4px 16px rgba(31, 38, 135, 0.2);
+    animation: card-entrance 0.8s ease-out forwards;
+    opacity: 0;
+    
+}
+
+@keyframes card-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography */
+.toolkits-card h1 {
+    font-size: clamp(1.8rem, 3vw + 1rem, 2.5rem);
+    color: #dbd1d1;
+    font-family: "Trirong", serif;
+    margin-bottom: clamp(1rem, 2vw + 0.5rem, 2rem);
+    text-align: center;
+}
+
+.toolkits-card h2 {
+    font-size: clamp(1.4rem, 2vw + 0.8rem, 2rem);
+    color: #dbd1d1;
+    margin-bottom: 1rem;
+}
+
+.toolkits-card h3 {
+    font-size: clamp(1.2rem, 1.5vw + 0.7rem, 1.8rem);
+    color: #dbd1d1;
+    margin-bottom: 0.8rem;
+}
+
+.toolkits-card p {
+    font-size: clamp(1rem, 1vw + 0.5rem, 1.2rem);
+    color: #dbd1d1;
+    line-height: 1.6;
+    margin-bottom: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+}
+
+/* Animated background blobs */
+.toolkits-card::before,
+.toolkits-card::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    filter: blur(30px);
+    opacity: 0.3;
+    z-index: -1;
+    animation: blob-animation 6s infinite alternate ease-in-out;
+}
+
+.toolkits-card::before {
+    background: linear-gradient(
+        45deg,
+        rgba(85, 2, 56, 0.8),
+        rgba(5, 9, 223, 0.8)
+    );
+    top: -20px;
+    left: -20px;
+}
+
+.toolkits-card::after {
+    background: linear-gradient(
+        45deg,
+        rgba(64, 136, 225, 0.8),
+        rgba(177, 230, 54, 0.8)
+    );
+    bottom: -20px;
+    right: -20px;
+    animation-delay: -4s;
+}
+
+@keyframes blob-animation {
+    0% {
+        transform: translate(0, 0) scale(2) rotate(0deg);
+    }
+    50% {
+        transform: translate(10px, -10px) scale(1.2) rotate(90deg);
+    }
+    100% {
+        transform: translate(-10px, 10px) scale(2) rotate(180deg);
+    }
+}
+
+/* Entry content styles */
+.entry-content {
+    padding: clamp(1rem, 2vw + 0.5rem, 2rem);
+}
+
+/* Tablet Styles */
+@media (min-width: 48em) {
+    .toolkits-card {
+        /* padding: 2rem; */
+    }
+
+    .toolkits-card::before,
+    .toolkits-card::after {
+        width: 200px;
+        height: 200px;
+        filter: blur(40px);
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 64em) {
+    .toolkits {
+        padding: 2rem;
+    }
+
+    .toolkits-card {
+        max-width: 1200px;
+    }
+
+    .toolkits-card::before,
+    .toolkits-card::after {
+        width: 300px;
+        height: 300px;
+        filter: blur(60px);
+    }
+
+    .entry-content {
+        padding: clamp(1.5rem, 3vw + 1rem, 3rem);
+    }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 90em) {
+   
+
+    .toolkits-card::before,
+    .toolkits-card::after {
+        width: 400px;
+        height: 400px;
+        filter: blur(80px);
+    }
+}
