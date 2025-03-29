@@ -23,6 +23,63 @@ const Home = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const [h2Contents, setH2Contents] = useState([]);
 
+
+
+     //create scrollBar effect
+    useEffect(()=>{
+        const calculateScrollProgress = ()=>{
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (window.scrollY / totalHeight) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.height = `${scrollProgress}%`;
+            }
+        }
+        window.addEventListener('scroll', calculateScrollProgress);
+        calculateScrollProgress();
+        //cleanup scrollBar effect
+        return () => {
+            window.removeEventListener('scroll', calculateScrollProgress);
+        };
+        
+    }, []);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(restPath);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Fetched Data:', data); // Debugging: Log the fetched data
+                setData(data);
+                setLoadStatus(true);
+            } else {
+                setLoadStatus(false);
+            }
+        };
+        fetchData();
+    }, [restPath]);
+
+
+    //create scrollBar effect
+    useEffect(()=>{
+        const calculateScrollProgress = ()=>{
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (window.scrollY / totalHeight) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.height = `${scrollProgress}%`;
+            }
+        }
+        window.addEventListener('scroll', calculateScrollProgress);
+        calculateScrollProgress();
+        //cleanup scrollBar effect
+        return () => {
+            window.removeEventListener('scroll', calculateScrollProgress);
+        };
+        
+    }, []);
+
     // Vanta.js effect
     useEffect(() => {
         if (!vantaEffect && vantaRef.current) {
@@ -30,30 +87,6 @@ const Home = () => {
                 FOG({
                     el: vantaRef.current,
                     THREE: THREE,
-                    // mouseControls: true,
-                    // touchControls: true,
-                    // gyroControls: false,
-                    // minHeight: window.innerHeight, // Changed back to single viewport height
-                    // minWidth: window.innerWidth,
-                    // baseColor: 0x0,
-                    // backgroundColor: 0x0,
-                    // amplitudeFactor: 0.70,
-                    // xOffset: 0.0,
-                    // yOffset: 0.0,
-                    // size: 2,
-                    // speedValue: 0.1,
-                    // rings: 4,
-                    // scale: 1.0,
-                    // scaleMobile: 1.0,
-                    // mouseEase: true,
-                    // mouseFactor: 0.6,
-                    // mouseCoeffX: 2,
-                    // mouseCoeffY: 2,
-                    // wingSpan: 10.0,
-                    // waveHeight: 0.5,
-                    // waveSpeed: 0.1,
-                    // zoom: 0.65
-
                     mouseControls: true,
                     touchControls: true,
                     gyroControls: false,
@@ -152,6 +185,8 @@ const Home = () => {
 
     return (
         <div className="home-root">
+            <div id="progressBar"></div>
+            <div id="scrollPath"></div>
             {/* Home Section */}
             <div className="section home-section">
                 <div ref={vantaRef} className="vanta-layer"></div>

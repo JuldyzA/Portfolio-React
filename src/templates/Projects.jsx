@@ -14,6 +14,26 @@ const Projects = () => {
 
     const [activeIndex, setActiveIndex] = useState(0);
 
+    //create scrollBar effect
+    useEffect(()=>{
+        const calculateScrollProgress = ()=>{
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (window.scrollY / totalHeight) * 100;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                progressBar.style.height = `${scrollProgress}%`;
+            }
+        }
+        window.addEventListener('scroll', calculateScrollProgress);
+        calculateScrollProgress();
+        //cleanup scrollBar effect
+        return () => {
+            window.removeEventListener('scroll', calculateScrollProgress);
+        };
+        
+    }, []);
+
+
     useEffect(() => {
         const fetchData = async () => {
             const response = await fetch(restPath);
@@ -72,8 +92,10 @@ const Projects = () => {
                                     
         
                                 </div>
-
         
+                            </div>
+                            <div>
+                            <a className="more-details-button" href="#" style={{'--clr':'#4733daeb'}}><span>MORE ABOUT PROJECT</span><i></i></a>
                             </div>
                         </SwiperSlide>
                     ))}
